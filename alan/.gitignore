@@ -1,0 +1,43 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Build
+/dist/
+/build/
+
+# Misc
+*.tgz
+
+# Coverage
+coverage/
+
+# Others
+*.swp
+*.bak
+*.tmp
+*.out
+
+# Optional: ignore test output
+/test-output/
