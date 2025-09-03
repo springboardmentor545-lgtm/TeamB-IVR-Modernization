@@ -16,7 +16,7 @@ sequenceDiagram
     Backend-->>Middleware: Send response
     Middleware-->>IVR: Return processed info
     IVR-->>User: Provide response
-(''')
+'''
 
 ### Explanation
 The sequence diagram shows how the IVR system works:
