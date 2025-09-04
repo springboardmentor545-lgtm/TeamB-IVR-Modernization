@@ -1,5 +1,4 @@
 # TeamB-IVR-Modernization
-## Documentation
 
 ## 📖 Overview
 
@@ -50,14 +49,6 @@ They increase customer dissatisfaction and support costs.
 
 ### BAP (Bot Application Platform) 🤖: Adds conversational AI to understand natural language and automate workflows.
 
-## 🖼️ Introduction to sequence diagram
-The following section explains how different parts of the IVR system interact with each other.  
-We use a **sequence diagram** to show the step-by-step flow of communication between:  
-
-- **User** → the person making the call  
-- **IVR** → the Interactive Voice Response system that takes input  
-- **Middleware** → the layer that processes and forwards requests  
-- **Backend** → the system that provides data and final responses  
 
 ## 📊 Sequence Diagram
 
@@ -92,6 +83,48 @@ The sequence diagram shows how the IVR system works:
 6. Finally, the **IVR** provides the response back to the **User**.
 
 This flow ensures smooth communication between the user and backend through the IVR system.
+
+## 📞 Usage Flow
+
+The IVR system follows a structured flow to ensure smooth user interaction:
+
+ 1.Call Initiation → A user dials into the IVR system.
+
+2.Greeting & Menu → The IVR welcomes the user and presents options (e.g., Press 1 for Balance, Press 2 for Support).
+
+3.User Input → Input is captured through keypad (DTMF) or voice recognition (ASR).
+
+4.Middleware Processing → The input is forwarded to the middleware, which validates and routes the request.
+
+5.Backend Query → The backend retrieves the required data (e.g., balance details) from the database or service.
+
+6.Response Formatting → Middleware processes the backend response into a user-friendly message.
+
+7.IVR Playback → The IVR communicates the result back to the user via text-to-speech or pre-recorded prompts.
+
+8.Session Completion → The user either ends the call or navigates back for additional actions.
+
+## ⚠️ Error Handling
+
+- To ensure reliability, the IVR system includes robust error-handling mechanisms:
+
+- Invalid Input → If the user presses an unsupported key or says an unrecognized phrase, the IVR plays an error message and prompts again.
+
+- Retry Limit → The user can retry up to 3 times before the system transfers to a live agent (if available) or ends the call.
+
+- No Input / Timeout → If the user does not respond within a set time, the IVR repeats the prompt or ends the session politely.
+
+- Backend Failure → If the backend is unavailable, the middleware returns a fallback response (“Service is temporarily unavailable, please try again later”).
+
+- Logging & Monitoring → All invalid attempts and system errors are logged for monitoring, analysis, and improvement.
+  ## ⚙️ Setup
+
+1.To run the IVR modernization project, follow these steps:
+git clone https://github.com/your-username/ivr-modernization.git
+cd ivr-modernization
+
+
+Clone the Repository
 ## ✅ Conclusion
 
 This project shows how modernizing legacy VXML-based IVR systems can greatly improve communication between users and backend services. By integrating with modern platforms like ACS and BAP, the IVR becomes more flexible, supports both voice and keypad inputs, and delivers smarter, faster, and more accurate responses. This modernization not only reduces customer frustration but also makes the system scalable, cost-effective, and future-ready.
