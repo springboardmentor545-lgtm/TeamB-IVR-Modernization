@@ -22,8 +22,11 @@ They increase customer dissatisfaction and support costs.
 
 ### Modernization makes IVR better by:
 ✅Adding smarter workflows and shorter menus
+
 ✅ Supporting voice recognition along with keypad inputs
+
 ✅ Connecting with modern backend systems (APIs, databases, cloud)
+
 ✅ Giving faster, clearer, and more accurate responses to users
 
 ## Introduction to sequence diagram
