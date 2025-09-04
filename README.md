@@ -3,7 +3,7 @@
 ## 📑 Table of Contents
 - [Purpose of the Project](#purpose-of-the-project)
 - [📞 What is IVR?](#-what-is-ivr)
-- [⚡ Why Modernization is Needed?](#-why-modernization-is-Needed?)
+- [⚡ Why Modernization is Needed?](#-Why-Modernization-is-Needed?)
 - [🚀 Modernization makes IVR better](#-modernization-makes-ivr-better-by)
 - [📊 Introduction to Sequence Diagram](#introduction-to-sequence-diagram)
 - [🖼️ Sequence Diagram](#-sequence-diagram)
