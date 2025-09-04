@@ -1,6 +1,8 @@
 # TeamB-IVR-Modernization
 ## Documentation
-
+## Introduction
+📌 Purpose of the Project
+The purpose of this project is to modernize an IVR (Interactive Voice Response) system so that it becomes faster, smarter, and easier for users to interact with. A modern IVR helps businesses improve customer experience, reduce wait times, and handle requests more efficiently without needing human support every time.
 The following section explains how different parts of the IVR system interact with each other.  
 We use a **sequence diagram** to show the step-by-step flow of communication between:  
 
