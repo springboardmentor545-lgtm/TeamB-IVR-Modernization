@@ -2,14 +2,13 @@
 ## Documentation
 
 ## 📑 Table of Contents
-## 📑 Table of Contents  
-- [📌 Purpose of the Project](#purpose-of-the-project)  
-- [🔑 What is IVR?](#what-is-ivr)  
-- [🚀 Why Modernization is Needed?](#why-modernization-is-needed)  
-- [🛠️ Modernization makes IVR better](#modernization-makes-ivr-better)  
-- [📊 Introduction to Sequence Diagram](#introduction-to-sequence-diagram)  
-- [📈 Sequence Diagram](#sequence-diagram)  
-- [📝 Explanation](#explanation)  
+- [Purpose of the Project](#purpose-of-the-project)
+- [📞 What is IVR?](#-what-is-ivr)
+- [⚡ Why Modernization is Needed?](#why-Modernization-is-Needed)
+- [🚀 Modernization makes IVR better](#-modernization-makes-ivr-better-by)
+- [📊 Introduction to Sequence Diagram](#introduction-to-sequence-diagram)
+- [🖼️ Sequence Diagram](#-sequence-diagram)
+- [📝 Explanation](#-explanation)
 
 ### Purpose of the Project
 
