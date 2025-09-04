@@ -7,20 +7,20 @@
 The purpose of this project is to modernize an IVR (Interactive Voice Response) system so that it becomes faster, smarter, and easier for users to interact with.
 A modern IVR helps businesses improve customer experience, reduce wait times, and handle requests more efficiently without needing human support every time.
 
-### What is IVR?
+### 📌 What is IVR?
 
 IVR (Interactive Voice Response) is an automated phone system that allows users to interact with a computer using voice or keypad inputs.
 Example: When you call a bank and hear “Press 1 for Balance, Press 2 for Transactions” — that is an IVR system.
 It connects the user with the backend systems through voice menus, without requiring a live agent for every request.
 
-### Why Modernization is Needed?
+### ☎️ Why Modernization is Needed?
 
 Traditional IVR systems are often slow, outdated, and frustrating for users.
 They have long menus, making users press many keys before reaching what they need.
 They are not smart — they can’t easily handle errors, voice inputs, or connect smoothly with new digital services.
 They increase customer dissatisfaction and support costs.
 
-### Modernization makes IVR better by:
+### 🔄 Modernization makes IVR better by:
 ✅Adding smarter workflows and shorter menus
 
 ✅ Supporting voice recognition along with keypad inputs
@@ -38,7 +38,7 @@ We use a **sequence diagram** to show the step-by-step flow of communication bet
 - **Middleware** → the layer that processes and forwards requests  
 - **Backend** → the system that provides data and final responses  
 
-## Sequence Diagram
+## 📊 Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -61,7 +61,7 @@ sequenceDiagram
 
 ```
 
-### Explanation
+### 📝 Explanation
 The sequence diagram shows how the IVR system works:
 1. The **User** calls and gives input to the **IVR**.
 2. The **IVR** sends the input to the **Middleware**.
