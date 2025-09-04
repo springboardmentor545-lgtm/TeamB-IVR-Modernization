@@ -35,7 +35,7 @@ We use a **sequence diagram** to show the step-by-step flow of communication bet
 - **Middleware** → the layer that processes and forwards requests  
 - **Backend** → the system that provides data and final responses  
 
-### Sequence Diagram
+## Sequence Diagram
 
 ```mermaid
 sequenceDiagram
