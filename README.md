@@ -114,7 +114,7 @@ The IVR system follows a structured flow to ensure smooth user interaction:
 
 - Logging & Monitoring → All invalid attempts and system errors are logged for monitoring, analysis, and improvement.
   
-  ## Setup
+  ## ⚙️ Setup
   
 1. Clone the repository.
 2. Install dependencies for each module (IVR, middleware, backend).
