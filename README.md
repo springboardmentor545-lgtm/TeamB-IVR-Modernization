@@ -10,7 +10,7 @@ The new IVR integrates with Azure Communication Services (ACS) ☁️ and Bot Ap
 It supports both voice 🎙️ and keypad inputs ⌨️, enabling faster, more intelligent, and user-friendly interactions.
 
 
-### Purpose of the Project
+### 📌Purpose of the Project
 
 The purpose of this project is to modernize an IVR (Interactive Voice Response) system so that it becomes faster, smarter, and easier for users to interact with.
 A modern IVR helps businesses improve customer experience, reduce wait times, and handle requests more efficiently without needing human support every time.
@@ -41,7 +41,7 @@ They increase customer dissatisfaction and support costs.
 
 IVR (Interactive Voice Response) ☎️: Handles incoming calls, plays prompts, and collects user input.
 
-### Middleware 🔄:Connects IVR with backend services. It processes requests and communicates with APIs.
+### Middleware 🔄: Connects IVR with backend services. It processes requests and communicates with APIs.
 
 ### Backend 🖥️: Stores account or business data and responds to middleware requests.
 
