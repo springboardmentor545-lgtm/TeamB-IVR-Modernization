@@ -18,12 +18,18 @@ sequenceDiagram
     participant Middleware
     participant Backend
 
-    User->>IVR: Call and give input
+    User->>IVR: Call and press a key (e.g., 1 for Balance)
     IVR->>Middleware: Send input
-    Middleware->>Backend: Process request
-    Backend-->>Middleware: Send response
-    Middleware-->>IVR: Return processed info
-    IVR-->>User: Provide response
+    Middleware->>Backend: Request account balance
+    Backend-->>Middleware: Return balance details
+    Middleware-->>IVR: Send processed balance info
+    IVR-->>User: Play balance response
+
+    alt Invalid Input
+        IVR-->>User: Play error message (Invalid option)
+        IVR-->>User: Ask to re-enter input
+    end
+
 ```
 
 ### Explanation
