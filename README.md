@@ -49,7 +49,6 @@ They increase customer dissatisfaction and support costs.
 
 ### BAP (Bot Application Platform) 🤖: Adds conversational AI to understand natural language and automate workflows.
 
-
 ## 📊 Sequence Diagram
 
 ```mermaid
@@ -83,7 +82,6 @@ The sequence diagram shows how the IVR system works:
 6. Finally, the **IVR** provides the response back to the **User**.
 
 This flow ensures smooth communication between the user and backend through the IVR system.
-
 ## 📞 Usage Flow
 
 The IVR system follows a structured flow to ensure smooth user interaction:
@@ -102,7 +100,6 @@ The IVR system follows a structured flow to ensure smooth user interaction:
 7. IVR Playback → The IVR communicates the result back to the user via text-to-speech or pre-recorded prompts.
 
 8. Session Completion → The user either ends the call or navigates back for additional actions.
-
 ## ⚠️ Error Handling
 
 - To ensure reliability, the IVR system includes robust error-handling mechanisms:
@@ -116,41 +113,16 @@ The IVR system follows a structured flow to ensure smooth user interaction:
 - Backend Failure → If the backend is unavailable, the middleware returns a fallback response (“Service is temporarily unavailable, please try again later”).
 
 - Logging & Monitoring → All invalid attempts and system errors are logged for monitoring, analysis, and improvement.
-  ## ⚙️ Setup
-
-1. To run the IVR modernization project, follow these steps:
-- Clone the Repository
-git clone https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization.git
-cd ivr-modernization
-
-2. Install Dependencies
-Ensure Node.js is installed, then install project dependencies:
-
-npm install
-
-3. Configure Environment Variables
-
-- Create a .env file with required details:
-
-- DB_URI → Database connection string
-
-- API_KEY → ACS/BAP authentication key
-
-- PORT → Application port number
-
-4. Run Backend Server
-npm run backend
-5. Deploy or Simulate IVR
-
-- Use platforms like Twilio or Asterisk to route calls into the system.
-
-- Map IVR prompts to middleware endpoints.
-
-6. Test the Flow
-
-- Run both normal and edge case scenarios.
-
-- Validate correct handling of valid inputs, invalid inputs, timeouts, and backend errors.
+  
+  ## Setup
+  
+1. Clone the repository.
+2. Install dependencies for each module (IVR, middleware, backend).
+3. Configure environment variables (e.g., API keys, database credentials).
+4. Run backend server.
+5. Run middleware service.
+6. Deploy or simulate IVR using a platform like Twilio or Asterisk.
+7. Test the flow using provided test cases.
 ## ⚠️ Error Handling Flowchart
   ```mermaid
 flowchart TD
