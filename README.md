@@ -61,7 +61,7 @@ sequenceDiagram
 
 ```
 
-### 📝 Explanation
+## 📝 Explanation
 The sequence diagram shows how the IVR system works:
 1. The **User** calls and gives input to the **IVR**.
 2. The **IVR** sends the input to the **Middleware**.
