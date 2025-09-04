@@ -1,14 +1,14 @@
 # TeamB-IVR-Modernization
 ## Documentation
 
-## 📑 Table of Contents
-- [Purpose of the Project](#purpose-of-the-project)
-- [📞 What is IVR?](#-what-is-ivr)
-- [⚡ Why Modernization is Needed?](#why-Modernization-is-Needed)
-- [🚀 Modernization makes IVR better](#-modernization-makes-ivr-better-by)
-- [📊 Introduction to Sequence Diagram](#introduction-to-sequence-diagram)
-- [🖼️ Sequence Diagram](#-sequence-diagram)
-- [📝 Explanation](#-explanation)
+## 📖 Overview
+
+This project focuses on modernizing a legacy VXML-based IVR system into a smarter, scalable solution.
+
+The new IVR integrates with Azure Communication Services (ACS) ☁️ and Bot Application Platform (BAP) 🤖 to provide a seamless customer experience. 
+
+It supports both voice 🎙️ and keypad inputs ⌨️, enabling faster, more intelligent, and user-friendly interactions.
+
 
 ### Purpose of the Project
 
@@ -36,6 +36,18 @@ They increase customer dissatisfaction and support costs.
 ✅ Connecting with modern backend systems (APIs, databases, cloud)
 
 ✅ Giving faster, clearer, and more accurate responses to users
+
+## 🏗️ System Architecture
+
+IVR (Interactive Voice Response) ☎️: Handles incoming calls, plays prompts, and collects user input.
+
+Middleware 🔄: Connects IVR with backend services. It processes requests and communicates with APIs.
+
+Backend 🖥️: Stores account or business data and responds to middleware requests.
+
+ACS (Azure Communication Services) ☁️: Provides modern communication channels like voice, SMS, and chat.
+
+BAP (Bot Application Platform) 🤖: Adds conversational AI to understand natural language and automate workflows.
 
 ## 🖼️ Introduction to sequence diagram
 The following section explains how different parts of the IVR system interact with each other.  
