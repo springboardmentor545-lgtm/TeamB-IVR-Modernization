@@ -87,22 +87,21 @@ This flow ensures smooth communication between the user and backend through the 
 ## 📞 Usage Flow
 
 The IVR system follows a structured flow to ensure smooth user interaction:
+1. Call Initiation → A user dials into the IVR system.
 
- 1.Call Initiation → A user dials into the IVR system.
+2. Greeting & Menu → The IVR welcomes the user and presents options (e.g., Press 1 for Balance, Press 2 for Support).
 
-2.Greeting & Menu → The IVR welcomes the user and presents options (e.g., Press 1 for Balance, Press 2 for Support).
+3. User Input → Input is captured through keypad (DTMF) or voice recognition (ASR).
 
-3.User Input → Input is captured through keypad (DTMF) or voice recognition (ASR).
+4. Middleware Processing → The input is forwarded to the middleware, which validates and routes the request.
 
-4.Middleware Processing → The input is forwarded to the middleware, which validates and routes the request.
+5. Backend Query → The backend retrieves the required data (e.g., balance details) from the database or service.
 
-5.Backend Query → The backend retrieves the required data (e.g., balance details) from the database or service.
+6. Response Formatting → Middleware processes the backend response into a user-friendly message.
 
-6.Response Formatting → Middleware processes the backend response into a user-friendly message.
+7. IVR Playback → The IVR communicates the result back to the user via text-to-speech or pre-recorded prompts.
 
-7.IVR Playback → The IVR communicates the result back to the user via text-to-speech or pre-recorded prompts.
-
-8.Session Completion → The user either ends the call or navigates back for additional actions.
+8. Session Completion → The user either ends the call or navigates back for additional actions.
 
 ## ⚠️ Error Handling
 
@@ -119,12 +118,54 @@ The IVR system follows a structured flow to ensure smooth user interaction:
 - Logging & Monitoring → All invalid attempts and system errors are logged for monitoring, analysis, and improvement.
   ## ⚙️ Setup
 
-1.To run the IVR modernization project, follow these steps:
-git clone https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization/edit/Frontend-TeamB-IVR-Modernization/README.md
+1. To run the IVR modernization project, follow these steps:
+- Clone the Repository
+git clone https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization.git
 cd ivr-modernization
 
+2. Install Dependencies
+Ensure Node.js is installed, then install project dependencies:
 
-Clone the Repository
+npm install
+
+3. Configure Environment Variables
+
+- Create a .env file with required details:
+
+- DB_URI → Database connection string
+
+- API_KEY → ACS/BAP authentication key
+
+- PORT → Application port number
+
+4. Run Backend Server
+npm run backend
+5. Deploy or Simulate IVR
+
+- Use platforms like Twilio or Asterisk to route calls into the system.
+
+- Map IVR prompts to middleware endpoints.
+
+6. Test the Flow
+
+- Run both normal and edge case scenarios.
+
+- Validate correct handling of valid inputs, invalid inputs, timeouts, and backend errors.
+- ⚠️ Error Handling Flowchart
+  flowchart TD
+    A[Start: User Input] --> B{Valid Input?}
+    B -- Yes --> C[Send to Middleware]
+    C --> D[Process Request]
+    D --> E[Return Response to User]
+    E --> F[End Call]
+
+    B -- No --> G[Play Error Message]
+    G --> H{Retry Attempts Left?}
+    H -- Yes --> A
+    H -- No --> I{Agent Available?}
+    I -- Yes --> J[Transfer to Live Agent]
+    I -- No --> K[End Call]
+
 ## ✅ Conclusion
 
 This project shows how modernizing legacy VXML-based IVR systems can greatly improve communication between users and backend services. By integrating with modern platforms like ACS and BAP, the IVR becomes more flexible, supports both voice and keypad inputs, and delivers smarter, faster, and more accurate responses. This modernization not only reduces customer frustration but also makes the system scalable, cost-effective, and future-ready.
