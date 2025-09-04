@@ -151,8 +151,9 @@ npm run backend
 - Run both normal and edge case scenarios.
 
 - Validate correct handling of valid inputs, invalid inputs, timeouts, and backend errors.
-- ⚠️ Error Handling Flowchart
-  flowchart TD
+## ⚠️ Error Handling Flowchart
+  ```mermaid
+flowchart TD
     A[Start: User Input] --> B{Valid Input?}
     B -- Yes --> C[Send to Middleware]
     C --> D[Process Request]
@@ -165,7 +166,7 @@ npm run backend
     H -- No --> I{Agent Available?}
     I -- Yes --> J[Transfer to Live Agent]
     I -- No --> K[End Call]
-
+```
 ## ✅ Conclusion
 
 This project shows how modernizing legacy VXML-based IVR systems can greatly improve communication between users and backend services. By integrating with modern platforms like ACS and BAP, the IVR becomes more flexible, supports both voice and keypad inputs, and delivers smarter, faster, and more accurate responses. This modernization not only reduces customer frustration but also makes the system scalable, cost-effective, and future-ready.
