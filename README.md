@@ -1,6 +1,6 @@
 # TeamB-IVR-Modernization
 ## Documentation
-## 📑 Table of Contents  
+
 ## 📑 Table of Contents
 - [Purpose of the Project](#purpose-of-the-project)
 - [📞 What is IVR?](#-what-is-ivr)
