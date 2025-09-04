@@ -120,7 +120,7 @@ The IVR system follows a structured flow to ensure smooth user interaction:
   ## ⚙️ Setup
 
 1.To run the IVR modernization project, follow these steps:
-git clone https://github.com/your-username/ivr-modernization.git
+git clone https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization/edit/Frontend-TeamB-IVR-Modernization/README.md
 cd ivr-modernization
 
 
