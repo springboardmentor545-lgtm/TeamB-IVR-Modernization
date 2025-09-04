@@ -4,7 +4,7 @@
 ## 📑 Table of Contents
 - [Purpose of the Project](#purpose-of-the-project)
 - [📞 What is IVR?](#-what-is-ivr)
-- [⚡ Why Modernization is Needed?](#-why-modernization-is-needed)
+- [⚡ Why Modernization is Needed?](#-why-Modernization-is-Needed)
 - [🚀 Modernization makes IVR better](#-modernization-makes-ivr-better-by)
 - [📊 Introduction to Sequence Diagram](#introduction-to-sequence-diagram)
 - [🖼️ Sequence Diagram](#-sequence-diagram)
@@ -37,7 +37,7 @@ They increase customer dissatisfaction and support costs.
 
 ✅ Giving faster, clearer, and more accurate responses to users
 
-## Introduction to sequence diagram
+## 🖼️ Introduction to sequence diagram
 The following section explains how different parts of the IVR system interact with each other.  
 We use a **sequence diagram** to show the step-by-step flow of communication between:  
 
