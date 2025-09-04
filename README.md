@@ -40,7 +40,7 @@ They increase customer dissatisfaction and support costs.
 
 ## 🏗️ System Architecture
 
-IVR (Interactive Voice Response) ☎️: Handles incoming calls, plays prompts, and collects user input.
+### IVR (Interactive Voice Response) ☎️: Handles incoming calls, plays prompts, and collects user input.
 
 ### Middleware 🔄: Connects IVR with backend services. It processes requests and communicates with APIs.
 
