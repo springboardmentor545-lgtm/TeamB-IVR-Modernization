@@ -40,18 +40,18 @@ They increase customer dissatisfaction and support costs.
 
 ##  System Architecture
 
-#### IVR (Interactive Voice Response) :
+### IVR (Interactive Voice Response) :
 Handles incoming calls, plays prompts, and collects user input.
 
-#### Middleware : 
+### Middleware : 
 Connects IVR with backend services. It processes requests and communicates with APIs.
 
-####  Backend : Stores account or business data and responds to middleware requests.
+###  Backend : Stores account or business data and responds to middleware requests.
 
-#### ACS (Azure Communication Services) : 
+### ACS (Azure Communication Services) : 
 Provides modern communication channels like voice, SMS, and chat.
 
-#### BAP (Bot Application Platform) : 
+### BAP (Bot Application Platform) : 
 Ads conversational AI to understand natural language and automate workflows.
 
 ##  Sequence Diagram
