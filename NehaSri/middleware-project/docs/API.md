@@ -51,7 +51,7 @@ Case 1:
   "sessionId": "abc123",
   "response": "Your account balance is $500"
 }
-
+```
 Case 2:
   Digit = "2" (Agent Transfer from ACS)
   Status Code: 200 OK
@@ -61,7 +61,7 @@ Case 2:
   "sessionId": "abc123",
   "response": "Transferring you to an agent"
 }
-
+```
 ![Valid Digit Example](./screenshots/success.png)
 
 
@@ -73,7 +73,7 @@ Status Code: 200 OK
   "sessionId": "abc123",
   "response": "Payment service is currently active"
 }
-
+```
 
 ### 3.2 Error Responses
 
@@ -84,7 +84,7 @@ Status Code: 400 Bad Request
 {
   "error": "Missing sessionId or digit"
 }
-
+```
 Case 2: Invalid Digit (Any digit other than 1, 2, or 3)
 Status Code: 400 Bad Request
 
@@ -92,7 +92,7 @@ Status Code: 400 Bad Request
 {
   "error": "Invalid option selected"
 }
-
+```
 ![Invalid Digit Example](./screenshots/error.png)
 
 Case 3: Internal Server Error (If a downstream service fails)
@@ -103,3 +103,4 @@ Status Code: 500 Internal Server Error
 {
   "error": "Something went wrong"
 }
+```
