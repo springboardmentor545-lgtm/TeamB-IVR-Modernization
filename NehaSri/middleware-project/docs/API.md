@@ -20,11 +20,12 @@ Purpose: It validates the incoming sessionId and digit, then forwards the reques
 
 
 ### 2.1 Request Body
-
+```JSON
 {
   "sessionId": "abc123",
   "digit": "1"
 }
+```
 
 | Field       | Type   | Required | Description                                       |
 | :---------- | :----- | :------- | :------------------------------------------------ |
@@ -32,11 +33,11 @@ Purpose: It validates the incoming sessionId and digit, then forwards the reques
 | `digit`     | String |  Yes    | The digit pressed by the user on the IVR (1, 2, or 3). |
 
 ### 2.2 cURL Example
-```
+`
 curl -X POST http://localhost:3000/ivr/input \
   -H "Content-Type: application/json" \
   -d '{"sessionId":"abc123", "digit":"1"}'
-```
+`
 
 ## 3. Responses
 
