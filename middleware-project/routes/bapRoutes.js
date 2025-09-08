@@ -1,7 +1,7 @@
 const express = require("express");
-const { handleACS } = require("../controllers/acsController");
+const { handleBAP } = require("../controllers/bapController");
 
 const router = express.Router();
-router.post("/process", handleACS);
+router.post("/process", handleBAP);
 
 module.exports = router;
