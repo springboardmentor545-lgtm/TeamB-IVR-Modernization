@@ -18,7 +18,6 @@ Content-Type: application/json
 
 Purpose: It validates the incoming sessionId and digit, then forwards the request to either the ACS or BAP service based on the digit provided.
 
-
 ### 2.1 Request Body
 ```JSON
 {
