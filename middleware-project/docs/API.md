@@ -63,6 +63,8 @@ Case 2:
   "response": "Transferring you to an agent"
 }
 ```
+![Valid Digit Example](./screenshots/success.png)
+
 
 Case 3: Digit = "3" (Payment Service from BAP)
 Status Code: 200 OK
@@ -92,6 +94,7 @@ Status Code: 400 Bad Request
   "error": "Invalid option selected"
 }
 ```
+![Invalid Digit Example](./screenshots/error.png)
 
 Case 3: Internal Server Error (If a downstream service fails)
 
@@ -102,4 +105,3 @@ Status Code: 500 Internal Server Error
   "error": "Something went wrong"
 }
 ```
-
