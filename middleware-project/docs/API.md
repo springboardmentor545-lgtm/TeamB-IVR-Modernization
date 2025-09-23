@@ -2,27 +2,39 @@
 
 ## 1\. Overview
 
-This middleware serves as the main entry point for the IVR (Interactive Voice Response) system. It receives user inputs (digits or natural language) and routes them to the appropriate backend service for processing. The base URL for all endpoints is `http://localhost:3000`.
+This document provides detailed documentation for the IVR (Interactive Voice Response) middleware API. This middleware, built with **Node.js** and **Express**, serves as the primary entry point for the IVR system. It is designed to handle user inputs—both DTMF digits and natural language voice commands—and route them to the appropriate backend service for processing.
 
-### ACS Service:
+The base URL for all endpoints is `http://localhost:3000`.
 
-Handles requests for account balance (digit: "1") and account recharge (digit: "2").
+### Key Services:
 
-### BAP Service:
+  * **ACS:** Manages account-related queries.
+      * **Digit "1"**: Handles requests for account balance.
+      * **Digit "2"**: Handles requests for account recharges.
+  * **BAP:** Manages call transfers to live agents.
+      * **Digit "3"**: Handles requests to connect to a live agent.
 
-Handles requests to connect to a live agent (digit: "3").
+-----
 
-## 2\. Endpoint: /ivr/request
+## 2\. Endpoints
 
-This is the primary endpoint that receives all user digit inputs from the IVR system. The router is defined in `ivrRoutes.js` and the controller logic is in `ivrController.js`.
+### 2.1. Digit-Based Routing (`/ivr/request`)
 
-**Method:** `POST`
-**URL:** `http://localhost:3000/ivr/request`
-**Content-Type:** `application/json`
+This is the primary endpoint for receiving user inputs from a traditional IVR keypad. The routing logic is defined in `routes/ivrRoutes.js` and handled by the `controllers/ivrController.js`.
 
-**Purpose:** It validates the incoming `sessionId` and `digit`, then forwards the request to either the ACS or BAP service based on the digit provided.
+  * **Method:** `POST`
+  * **URL:** `http://localhost:3000/ivr/request`
+  * **Content-Type:** `application/json`
+  * **Purpose:** Validates the incoming `sessionId` and `digit`, then forwards the request to the appropriate internal service (ACS or BAP).
 
-### 2.1 Request Body
+#### Request Body
+
+| Field       | Type   | Required | Description                                           |
+| :---------- | :----- | :------- | :---------------------------------------------------- |
+| `sessionId` | String | Yes      | A unique identifier for the user's call session.      |
+| `digit`     | String | Yes      | The digit pressed by the user on the IVR ("1", "2", or "3"). |
+
+**Example Request:**
 
 ```json
 {
@@ -31,88 +43,88 @@ This is the primary endpoint that receives all user digit inputs from the IVR sy
 }
 ```
 
-| Field | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `sessionId` | String | Yes | A unique identifier for the user's call session. |
-| `digit` | String | Yes | The digit pressed by the user on the IVR (1, 2, or 3). |
-
-### 2.2 cURL Example
+#### cURL Example
 
 ```bash
 curl -X POST http://localhost:3000/ivr/request \
-  -H "Content-Type: application/json" \
-  -d '{"sessionId":"abc123", "digit":"1"}'
+ -H "Content-Type: application/json" \
+ -d '{"sessionId":"abc123", "digit":"1"}'
 ```
 
-## 3\. Endpoint: /ivr/conversation
+-----
 
-This endpoint handles natural language input from users and converts it to appropriate service calls using intent detection. The router is defined in `ivrRoutes.js` and the controller logic is in `conversationController.js`.
+### 2.2. Conversation-Based Routing (`/ivr/conversation`)
 
-**Method:** `POST`
-**URL:** `http://localhost:3000/ivr/conversation`
-**Content-Type:** `application/json`
+This endpoint is designed to handle natural language input from users, which is then translated into service calls using an intent detection model. The logic is defined in `routes/ivrRoutes.js` and handled by `controllers/conversationController.js`.
 
-**Purpose:** It processes natural language queries, detects user intent using the `IntentDetector` service, and routes to the appropriate service (`/acs/process` or `/bap/process`).
+  * **Method:** `POST`
+  * **URL:** `http://localhost:3000/ivr/conversation`
+  * **Content-Type:** `application/json`
+  * **Purpose:** Processes a natural language query, detects the user's intent using the `IntentDetector` service, and routes the request to the correct internal service.
 
-### 3.1 Request Body
+#### Request Body
+
+| Field       | Type   | Required | Description                               |
+| :---------- | :----- | :------- | :---------------------------------------- |
+| `sessionId` | String | Yes      | A unique identifier for the call session. |
+| `query`     | String | Yes      | The natural language query from the user. |
+
+**Example Request:**
 
 ```json
 {
-  "sessionId": "101",
-  "query": "check balance"
+  "sessionId": "abc123",
+  "query": "Can you check my account balance?"
 }
 ```
 
-| Field | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `sessionId` | String | Yes | A unique identifier for the user's call session. |
-| `query` | String | Yes | Natural language input from the user. |
+#### Supported Intents
 
-### 3.2 Supported Intents
+The intent detection logic in `services/intentService.js` maps user keywords to one of the following intents:
 
-The `intentService.js` file maps keywords to specific intents, services, and digits.
+| Intent             | Example Queries                                          | Service | Digit | Description                |
+| :----------------- | :------------------------------------------------------- | :------ | :---- | :------------------------- |
+| `balance_inquiry`  | "check balance", "what's my balance?", "show my money"    | ACS     | 1     | Check account balance.     |
+| `recharge_account` | "recharge account", "top up my phone", "add more credit" | ACS     | 2     | Recharge the user's account. |
+| `agent_support`    | "talk to an agent", "I need help", "customer support"    | BAP     | 3     | Connect to a live agent.   |
 
-| Intent | Example Queries | Service | Digit | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `balance_inquiry` | "check balance", "what's my balance?", "show account balance" | ACS | 1 | Check account balance |
-| `recharge_account` | "recharge account", "top up", "add money" | ACS | 2 | Recharge account |
-| `agent_support` | "talk to agent", "customer support", "I need help" | BAP | 3 | Connect to agent/support |
-
-### 3.3 cURL Example
+#### cURL Example
 
 ```bash
 curl -X POST http://localhost:3000/ivr/conversation \
-  -H "Content-Type: application/json" \
-  -d '{"sessionId":"101", "query":"check my account balance"}'
+ -H "Content-Type: application/json" \
+ -d '{"sessionId":"abc123", "query":"check my account balance"}'
 ```
 
-## 4\. Responses
+-----
 
-### 4.1 Success Responses (Digit-based /ivr/request)
+## 3\. Responses
 
-The structure of a successful response includes the `sessionId` and the `message` from the downstream service.
+### 3.1. Success Responses
 
-  * **Case 1: Digit = "1" (Balance Inquiry from ACS)**
-      * **Status Code:** `200 OK`
-      * **Response Body:**
+#### `/ivr/request` (Digit-Based)
+
+  * **Balance Inquiry (Digit: "1")**
+      * **Status:** `200 OK`
+      * **Body:**
         ```json
         {
           "sessionId": "abc123",
           "response": "Your account balance is ₹500."
         }
         ```
-  * **Case 2: Digit = "2" (Recharge from ACS)**
-      * **Status Code:** `200 OK`
-      * **Response Body:**
+  * **Recharge (Digit: "2")**
+      * **Status:** `200 OK`
+      * **Body:**
         ```json
         {
           "sessionId": "abc123",
           "response": "Your recharge has been processed successfully. ₹100 has been added to your account."
         }
         ```
-  * **Case 3: Digit = "3" (Agent Transfer from BAP)**
-      * **Status Code:** `200 OK`
-      * **Response Body:**
+  * **Agent Transfer (Digit: "3")**
+      * **Status:** `200 OK`
+      * **Body:**
         ```json
         {
           "sessionId": "abc123",
@@ -120,97 +132,65 @@ The structure of a successful response includes the `sessionId` and the `message
         }
         ```
 
-### 4.2 Success Responses (Conversation-based /ivr/conversation)
+#### `/ivr/conversation` (Natural Language)
 
-The conversation endpoint returns additional fields including the detected `intent` and `confidence`.
-
-  * **Case 1: Balance Inquiry**
-      * **Status Code:** `200 OK`
-      * **Response Body:**
+  * **Balance Inquiry**
+      * **Status:** `200 OK`
+      * **Body:**
         ```json
         {
-          "sessionId": "101",
+          "sessionId": "abc123",
           "intent": "balance_inquiry",
-          "confidence": "number",
           "response": "Your account balance is ₹500."
         }
         ```
-  * **Case 2: Recharge Request**
-      * **Status Code:** `200 OK`
-      * **Response Body:**
+### 3.2. Error Responses
+
+  * **Missing Parameters (400 Bad Request)**
+
+      * For `/ivr/request`:
         ```json
         {
-          "sessionId": "101",
-          "intent": "recharge_account",
-          "confidence": "number",
-          "response": "Your recharge has been processed successfully. ₹100 has been added to your account."
+          "error": "Missing sessionId or digit"
         }
         ```
-  * **Case 3: Agent Support**
-      * **Status Code:** `200 OK`
-      * **Response Body:**
+      * For `/ivr/conversation`:
         ```json
         {
-          "sessionId": "101",
-          "intent": "agent_support",
-          "confidence": "number",
-          "response": "Connecting you to a live agent. Please hold while we transfer your call. Your estimated wait time is 2 minutes."
+          "error": "Missing sessionId or query",
+          "required": ["sessionId", "query"]
         }
         ```
 
-### 4.3 Error Responses
+  * **Invalid Input (400 Bad Request)**
 
-  * **Case 1: Missing Parameters**
-      * **For `/ivr/request`**
-          * **Status Code:** `400 Bad Request`
-          * **Response Body:**
-            ```json
-            {
-              "error": "Missing sessionId or digit"
-            }
-            ```
-      * **For `/ivr/conversation`**
-          * **Status Code:** `400 Bad Request`
-          * **Response Body:**
-            ```json
-            {
-              "error": "Missing sessionId or query",
-              "required": ["sessionId", "query"]
-            }
-            ```
-  * **Case 2: Invalid Digit or Unrecognized Intent**
-      * **For `/ivr/request`**
-          * **Status Code:** `400 Bad Request`
-          * **Response Body:**
-            ```json
-            {
-              "error": "Invalid option selected"
-            }
-            ```
-      * **For `/ivr/conversation`**
-          * **Status Code:** `400 Bad Request`
-          * **Response Body:**
-            ```json
-            {
-              "error": "Unable to understand your request",
-              "suggestion": "Try asking about 'check balance', 'recharge account', or 'talk to agent'"
-            }
-            ```
-  * **Case 3: Internal Server Error**
-      * **For `/ivr/request`**
-          * **Status Code:** `500 Internal Server Error`
-          * **Response Body:**
-            ```json
-            {
-              "error": "Failed to process request"
-            }
-            ```
-      * **For `/ivr/conversation`**
-          * **Status Code:** `500 Internal Server Error`
-          * **Response Body:**
-            ```json
-            {
-              "error": "Failed to process conversation request",
-              "details": "string"
-            }
-            ```
+      * For an invalid digit in `/ivr/request`:
+        ```json
+        {
+          "error": "Invalid option selected"
+        }
+        ```
+      * For an unrecognized query in `/ivr/conversation`:
+        ```json
+        {
+          "error": "Unable to understand your request",
+          "suggestion": "Try asking about 'check balance', 'recharge account', or 'talk to agent'"
+        }
+        ```
+
+  * **Internal Server Error (500 Internal Server Error)**
+
+      * This indicates a failure in one of the downstream services.
+      * For `/ivr/request`:
+        ```json
+        {
+          "error": "Failed to process request"
+        }
+        ```
+      * For `/ivr/conversation`:
+        ```json
+        {
+          "error": "Failed to process conversation request",
+          "details": "<error_message_from_service>"
+        }
+        ```
