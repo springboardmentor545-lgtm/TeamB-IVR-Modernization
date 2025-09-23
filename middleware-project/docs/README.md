@@ -1,147 +1,136 @@
-# IVR Modernization Middleware – Milestone 2
+# IVR Modernization Middleware – Milestone 3
 
 ## Team-B Members
 
-- Ramya Inavolu
-- Seshwar Bheemineni
-- Sujal Rane
-- Pati Veera Surya Umanjani
-- Thrupthi Chandana G
-- Uma Maheswari Naidu
-- Varshitha Kolla
-- Joise S Arakkal
-- Parasaram Neha Sri
-- Alankrith
-- Laasya
+  * Ramya Inavolu
+  * Seshwar Bheemineni
+  * Sujal Rane
+  * Pati Veera Surya Umanjani
+  * Thrupthi Chandana G
+  * Uma Maheswari Naidu
+  * Varshitha Kolla
+  * Joise S Arakkal
+  * Parasaram Neha Sri
+  * Alankrith
+  * Laasya
 
 ## Introduction
 
-**Goal:** Modernize IVR with ACS/BAP
+**Goal:** Modernize a legacy IVR system by integrating it with modern ACS (Account Control Service) and BAP (Basic Agent Proxy) services.
 
-**Milestone 2:** Node.js middleware with mock ACS/BAP services.
+**Milestone 3:** This milestone enhances the Node.js middleware by adding a conversational AI layer. The system can now understand natural language queries, determine user intent, and route requests to the appropriate service, moving beyond simple digit-based DTMF inputs.
 
-## System Architecture
+-----
 
-The architecture shows how a user interacts with an IVR system (VXML), which collects inputs and passes them to a Node.js middleware layer.
+## System Architecture & Conversational Flow
 
-The middleware (Express server, routes, controllers) processes requests and forwards them to the AI platform (ACS/BAP).
+The architecture now supports a dual-input system. A user can interact with the IVR through traditional DTMF tones (digits) or by using natural language (speech-to-text). The Node.js middleware intelligently processes both types of input and routes them to the correct backend service (ACS or BAP).
 
-The AI generates a response, which flows back through the middleware and IVR, delivering the output to the user.
+### Conversational Flow Diagram
 
-## Setup
+```
+            ┌─────────────┐
+            │   IVR User  │
+            └──────┬──────┘
+                   │
+            ┌──────▼────────┐
+            │   Middleware    │
+            └──────┬─────────┘
+                   │
+    ┌──────────────┼─────────────────┐
+    │              │                 │
+    ▼              ▼                 ▼
+DTMF Input   Conversational Input  (Speech → Text)
+ (digits)         (text)
+    │              │
+    │              │
+┌───▼──┐       ┌───▼───┐
+│ ACS  │       │  BAP  │ (mock/real)
+└───▲──┘       └───▲───┘
+    │              │
+    └──────────────┬───────────────┘
+                   │
+            ┌──────▼───────┐
+            │  Middleware  │
+            │(Formats Resp)│
+            └──────┬───────┘
+                   │
+            ┌──────▼───────┐
+            │   IVR User   │
+            └──────────────┘
+```
 
-### System Setup (Installation Guide)
+-----
 
-#### Prerequisites
+## Setup and Installation
 
-- **Node.js** → Required to run middleware. Install from nodejs.org.
-- **npm** → Installed automatically with Node.js, used for dependencies.
-- **Thunder Client** → VS Code extension used to test APIs without Postman.
+### Prerequisites
 
-#### Installation Steps
+  * **Node.js**: Required to run the middleware server.
+  * **npm**: The Node.js package manager, used for installing dependencies.
+  * **Thunder Client** (or any API testing tool): A VS Code extension used for testing API endpoints.
+
+### Installation Steps
 
 **Step 1: Clone the Repository**
 
 ```bash
 git clone https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization.git
-cd TeamB-IVR-Modernization.git
+cd TeamB-IVR-Modernization/middleware-project
 ```
 
 **Step 2: Install Dependencies**
 
 ```bash
-cd TeamB-IVR-Modernization
 npm install
 ```
 
-**Step 3: Navigate to Middleware Project**
+**Step 3: Start the Server**
 
-1. Go inside the middleware project folder:
+To start the server, you can use `npm start` or run `nodemon` for automatic reloading during development.
 
-   ```
-   C:\Users\adhik\Documents\Projects\TeamB-IVR-Modernization\middleware-project
-   ```
-
-2. Check files are present:
-
-   ```bash
-   dir
-   ```
-
-3. Start the server:
-
-   Using npm:
-
-   ```bash
-   npm start
-   ```
-
-   Using nodemon:
-
-   ```bash
-   npx nodemon index.js
-   ```
-
-**Step 4: Test API with Thunder Client**
-
-- Open Thunder Client in VS Code → Click New Request
-- Change method to POST
-- Enter URL: http://localhost:3000/ivr/input
-- Go to Body → JSON → Paste sample JSON
-
-```json
-{
-  "sessionId": "9876543210",
-  "digit": "1"
-}
-```
-
-- Click Send
-
-**Step 5: Test BAP Route**
-
-- Open Thunder Client → Create POST Request
-- URL: http://localhost:3000/ivr/input
-- Body → JSON:
-
-```json
-{
-  "sessionId": "9876543210",
-  "digit": "3"
-}
-```
-
-- Click Send
-
-### Commands
+Using npm:
 
 ```bash
-npm install
 npm start
 ```
 
-Use nodemon for auto-reload when running the backend server.
+Using nodemon:
+
+```bash
+npx nodemon index.js
+```
+
+The server will be running at `http://localhost:3000`.
 
 ### Folder Structure
 
 ```
 middleware-project/
-│── package.json              # Main entry point
-│── index.js                  # Main entry point
-│── /routes                   # All API endpoints
-│    └── ivrRoutes.js
-│    └── acsRoutes.js
-│    └── bapRoutes.js
-│── /controllers              # Logic for routes
-│    └── ivrController.js
-│    └── acsController.js
-│    └── bapController.js
-│── /services                 # Mock services (simulate ACS/BAP)
-│    └── acsService.js
-│    └── bapService.js
-│── /docs
-│    └── API.md               # API documentation
-│── README.md
+├── package.json               
+├── index.js                   
+├── test-intent.js             
+│
+├── /routes                    # API endpoint definitions
+│   ├── ivrRoutes.js           
+│   ├── acsRoutes.js           
+│   └── bapRoutes.js           
+│
+├── /controllers               # Logic for handling incoming requests
+│   ├── ivrController.js       
+│   ├── conversationController.js 
+│   ├── acsController.js       
+│   └── bapController.js       
+│
+├── /services                  # Core business logic and service simulations
+│   ├── intentService.js      
+│   ├── acsService.js          
+│   └── bapService.js          
+│
+├── /docs
+│   └── API.md                 
+│   └── README.md    
+              
 ```
 
 ### System Setup – Execution Guide
@@ -179,35 +168,20 @@ npm -v
 
 4. Server runs on: http://localhost:3000/
 
-### Sample URLs & Output
+-----
+## API Documentation
 
-**Sample URL:** http://localhost:3000/ivr/input
+The middleware now exposes two primary endpoints under the `/ivr` route to handle both traditional and modern user inputs.
 
-**Output Example:**
+### 1\. Endpoint: `/ivr/request` (DTMF Digit Input)
 
-```json
-{"status": "success", "message": "IVR input received", "input": "User pressed 1"}
-```
+This endpoint processes traditional digit-based inputs from the IVR system.
 
-**Sample URL:** http://localhost:3000/acs/response
+  * **Method:** `POST`
+  * **URL:** `http://localhost:3000/ivr/request`
+  * **Description:** Receives a user's digit input, validates it, and routes the request to either the ACS or BAP service.
 
-**Output Example:**
-
-```json
-{"status": "success", "message": "ACS response processed", "response_code": 200}
-```
-
-## API Documentation – IVR Input Endpoint
-
-**Method:** POST
-
-**URL:** http://localhost:3000/ivr/input
-
-**Description**
-
-Main entry point for IVR requests. Validates user input and routes it to ACS or BAP services.
-
-### Request Body Example
+#### Request Body
 
 ```json
 {
@@ -216,179 +190,84 @@ Main entry point for IVR requests. Validates user input and routes it to ACS or 
 }
 ```
 
-| Field     | Type   | Required | Description                          |
-|-----------|--------|----------|--------------------------------------|
-| sessionId | String | Yes     | A unique identifier for the user's call session. |
-| digit     | String | Yes     | The digit pressed by the user on the IVR (Interactive Voice Response) system. |
-
-### Success Responses
-
-**Case 1: Digit = "1" (Balance Inquiry)**
+#### Success Response (Balance Inquiry)
 
 ```json
 {
   "sessionId": "abc123",
-  "response": "Your account balance is $500"
+  "response": "Your account balance is ₹500."
 }
 ```
 
-**Case 2: Digit = "2" (Agent Transfer)**
+-----
+
+### 2\. Endpoint: `/ivr/conversation` (Natural Language Input)
+
+This new endpoint processes natural language queries, allowing for a more intuitive user experience.
+
+  * **Method:** `POST`
+  * **URL:** `http://localhost:3000/ivr/conversation`
+  * **Description:** Takes a natural language query from the user, uses the `intentService` to determine the user's intent, and routes the request to the appropriate service.
+
+#### Request Body
+
+| Field       | Type   | Required | Description                               |
+| :---------- | :----- | :------- | :---------------------------------------- |
+| `sessionId` | String | Yes      | A unique identifier for the call session. |
+| `query`     | String | Yes      | The natural language query from the user. |
+
+**Example Request:**
 
 ```json
 {
   "sessionId": "abc123",
-  "response": "Transferring you to an agent"
+  "query": "I want to check my account balance"
 }
 ```
 
-**Case 3: Digit = "3" (Payment Service)**
+#### Supported Intents
 
-```json
-{
-  "sessionId": "abc123",
-  "response": "Payment service is currently active"
-}
-```
+The `intentService.js` file contains the logic for mapping keywords to specific intents:
 
-### Error Responses
+| Intent             | Example Queries                                  | Service | Digit |
+| :----------------- | :----------------------------------------------- | :------ | :---- |
+| `balance_inquiry`  | "check balance", "what's my balance?"            | ACS     | 1     |
+| `recharge_account` | "recharge my account", "top up my phone"         | ACS     | 2     |
+| `agent_support`    | "talk to an agent", "I need customer support"    | BAP     | 3     |
 
-**Case 1: Invalid Digit**
+#### Success Responses
 
-```json
-{ "error": "Invalid option selected" }
-```
+  * **Case 1: Balance Inquiry**
+    ```json
+    {
+      "sessionId": "abc123",
+      "intent": "balance_inquiry",
+      "response": "Your account balance is ₹500."
+    }
+    ```
+  * **Case 2: Agent Support Request**
+    ```json
+    {
+      "sessionId": "abc123",
+      "intent": "agent_support",
+      "response": "Connecting you to a live agent. Please hold while we transfer your call. Your estimated wait time is 2 minutes."
+    }
+    ```
 
-**Case 2: Missing Parameters**
+#### Error Response (Unrecognized Intent)
 
-```json
-{ "error": "Missing sessionId or digit" }
-```
+If the user's query cannot be mapped to a known intent, the API will return an error.
 
-**Case 3: Internal Server Error**
+  * **Status Code:** `400 Bad Request`
+  * **Response Body:**
+    ```json
+    {
+      "error": "Unable to understand your request",
+      "suggestion": "Try asking about 'check balance', 'recharge account', or 'talk to agent'"
+    }
+    ```
 
-```json
-{ "error": "Something went wrong" }
-```
-
-## Overview of /acs/process Endpoint
-
-**Method:** POST
-
-**URL:** http://localhost:3000/acs/process
-
-**Description:**
-
-Handles ACS-specific logic for account balance inquiry and agent transfer
-
-### Request Body
-
-```json
-{
-  "sessionId": "abc123",
-  "userInput": "1",
-  "channel": "voice"
-}
-```
-
-### Successful Response Example:
-
-```json
-{
-  "status": "success",
-  "message": "Command processed successfully",
-  "nextAction": "playAudio",
-  "audioFile": "welcome.wav"
-}
-```
-
-### Standard Error Status Codes:
-
-- 400 – Bad Request
-- 401 – Unauthorized
-- 404 – Not Found
-- 429 – Too Many Requests
-- 500 – Internal Server Error
-
-## ACS Endpoints
-
-The ACS integration acts as middleware that allows legacy IVR systems (built on VXML) to interact with modern conversational AI platforms. ACS is implemented as a mock service to simulate request–response flows between the IVR and ACS.
-
-The implementation follows a layered architecture with three main components: Routes, Controller, and Service.
-
-### acsRoutes.js
-
-- Defines the API endpoints that external systems, such as IVR, can call.
-- Directs incoming requests (e.g., /acs/response) to the appropriate controller.
-- Contains no logic other than path definitions.
-- Analogy: Functions like a reception desk that directs requests to the correct department.
-
-### acsController.js
-
-- Serves as the decision-making layer between routes and services.
-- Validates incoming data and ensures it is correctly structured.
-- Forwards valid requests to the service layer.
-- Ensures a consistent JSON response format.
-- Analogy: Works like a manager who checks documents, forwards them to the right team, and communicates the result.
-
-### acsService.js
-
-- Simulates ACS behavior and generates mock responses for milestone testing.
-- Processes the request using the provided sessionId and userInput.
-- Returns a structured response including a platform identifier (platform: "ACS") to distinguish ACS replies from other systems.
-- Analogy: Operates like a processing machine that takes in input and delivers well-formatted output.
-
-### Example Flow
-
-i. IVR sends a request: `{ "sessionId": "12345", "userInput": "press 1 for balance" }`
-
-ii. acsRoutes.js directs the request to acsController.js.
-
-iii. acsController.js validates inputs and passes them to acsService.js.
-
-iv. acsService.js returns a mock ACS response
-
-```json
-{
-  "platform": "ACS",
-  "sessionId": "12345",
-  "received": "press 1 for balance",
-  "message": "ACS processed: press 1 for balance"
-}
-```
-
-v. The final structured JSON response is delivered back to the IVR
-
-## Error Handling
-
-To ensure clarity and maintainability, the /acs/response API returns well-defined error payloads for every major error scenario. Each error response uses a consistent JSON structure with clear status codes.
-
-### Standard Error Status Codes
-
-- 400 Bad Request: Invalid input provided.
-- 401 Unauthorized: Authentication failure.
-- 404 Not Found: Session or resources missing.
-- 429 Too Many Requests: Rate limit exceeded.
-- 500 Internal Server Error: Unexpected middleware or ACS failure.
-
-### JSON Error Structure
-
-Each error response includes:
-
-- **code:** An error code string.
-- **message:** A human-readable description.
-- **details:** Additional context or advice.
-
-### Sample Error JSONs:
-
-```json
-{
-    "errorCode": "INVALID_INPUT",
-    "message": "The digit provided is not supported.",
-    "docsLink": "https://api.docs/errors#INVALID_INPUT"
-}
-```
-
-The /acs/response endpoint ensures smooth interaction between the middleware and ACS by handling user inputs efficiently. With clear request/response structures and robust error handling, it provides reliability, consistency, and ease of integration for future enhancements.
+-----
 
 ## Project Contribution
 
