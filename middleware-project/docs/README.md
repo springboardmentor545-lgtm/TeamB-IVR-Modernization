@@ -28,37 +28,7 @@ The architecture now supports a dual-input system. A user can interact with the 
 
 ### Conversational Flow Diagram
 
-```
-            ┌─────────────┐
-            │   IVR User  │
-            └──────┬──────┘
-                   │
-            ┌──────▼────────┐
-            │   Middleware    │
-            └──────┬─────────┘
-                   │
-    ┌──────────────┼─────────────────┐
-    │              │                 │
-    ▼              ▼                 ▼
-DTMF Input   Conversational Input  (Speech → Text)
- (digits)         (text)
-    │              │
-    │              │
-┌───▼──┐       ┌───▼───┐
-│ ACS  │       │  BAP  │ (mock/real)
-└───▲──┘       └───▲───┘
-    │              │
-    └──────────────┬───────────────┘
-                   │
-            ┌──────▼───────┐
-            │  Middleware  │
-            │(Formats Resp)│
-            └──────┬───────┘
-                   │
-            ┌──────▼───────┐
-            │   IVR User   │
-            └──────────────┘
-```
+![Flowchart](CFD.jpg)
 
 -----
 
