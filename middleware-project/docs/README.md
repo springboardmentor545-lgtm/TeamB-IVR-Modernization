@@ -89,12 +89,6 @@ npm install
 
 To start the server, you can use `npm start` or run `nodemon` for automatic reloading during development.
 
-Using npm:
-
-```bash
-npm start
-```
-
 Using nodemon:
 
 ```bash
