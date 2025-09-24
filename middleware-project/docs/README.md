@@ -256,6 +256,7 @@ If the user's query cannot be mapped to a known intent, the API will return an e
 - Debugging CORS issues
 - Structuring project into modular format
 - Managing error handling for failed API requests
+- Unrecognized Intent
 
 ## Learnings
 
@@ -264,17 +265,17 @@ If the user's query cannot be mapped to a known intent, the API will return an e
 - Gained deeper understanding of async programming
 - Learned to configure CORS
 - Improved collaboration using Git
+- Simple NLP libraries
 
-## Conclusion
+## Conclusion and Next Steps
 
-Through the development of the middleware for IVR Modernization, our team gained both technical and collaborative learnings that proved highly valuable. On the technical side, we understood the crucial role of middleware as the bridge between legacy IVR systems built on VXML and modern conversational AI platforms such as ACS and BAP. The project reinforced the importance of well-defined API communication, where structured request and response formats ensure seamless interoperability.
+Milestone 3 introduces conversational AI capabilities into the IVR system, enabling real-time natural language interaction alongside traditional DTMF inputs. This milestone significantly enhances the user experience by modernizing dialogue handling and integrating conversational flows into the existing system architecture. The `/ivr/conversation` endpoint, coupled with the `intentService`, provides a streamlined mechanism for intent detection and backend routing, laying the groundwork for a flexible and user-friendly IVR platform.
 
-Working with Node.js and Express gave us hands-on experience in asynchronous programming, routing, and modular application design. By organizing the project into routes, controllers, and services, we ensured maintainability and scalability. The use of Axios for API calls highlighted the importance of error handling, retries, and resilience in systems that depend on external services. Testing with Thunder Client helped us validate not only the correctness of the API flows but also the importance of capturing both success and error scenarios to improve robustness.
+With Milestone 3 completed, the project is now positioned to move into **Milestone 4: Testing and Deployment**. This will focus on validating performance, ensuring end-to-end flow accuracy, and preparing the modernized IVR for production rollout.
 
-Collaboration was another major learning. By dividing the middleware into modules, each team member contributed meaningfully to the project while also understanding how their part interacted with the larger system. This improved our coordination, communication, and collective problem-solving skills. We realized that building middleware is not only a coding task but also about aligning multiple perspectives into a cohesive solution.
+**Future Scope:**
 
-In terms of outcomes, Milestone 2 successfully demonstrated that requests from IVR can be routed through the middleware, processed by mock ACS/BAP services, and returned with meaningful responses. This validated our design and proved that modernization of legacy IVR systems is achievable without replacing existing infrastructure. By the end of this milestone, we had a working middleware with modular architecture, mock endpoints, and clear API documentation — establishing a strong foundation for further development.
+  * **Integration with Real AI Platforms:** Transition from mock services to enterprise-grade conversational platforms (e.g., ACS/BAP), incorporating secure authentication and advanced flow handling.
+  * **Enhanced NLU:** Improve the intent detection engine to better handle diverse user queries, contextual understanding, and multi-turn dialogues.
+  * **Robust Testing and Monitoring:** As part of Milestone 4, implement extensive testing, logging, and monitoring to ensure reliable performance in real-world conditions.
 
-Looking forward, the next milestone will involve integrating with real ACS/BAP platforms, which will introduce authentication, live conversational flows, and stronger security requirements. Performance and scalability will become a priority, ensuring that the middleware can handle production-level workloads with low latency. We also aim to enhance error handling, add monitoring and logging features, and strengthen dialogue flow mapping for more natural user experiences. In the long run, this middleware framework can evolve into a versatile solution that supports multiple AI platforms, enabling enterprises to modernize their IVR systems with flexibility and minimal redevelopment.
-
-Overall, this milestone has not only validated the feasibility of IVR modernization via middleware but also enriched our understanding of real-world system integration. It has given us the confidence and technical grounding to move toward a production-ready solution in the upcoming phases.
