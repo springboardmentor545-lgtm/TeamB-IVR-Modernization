@@ -16,16 +16,32 @@ exports.handleConversation = async (req, res) => {
     // Detect intent from natural language query
     const intentResult = IntentDetector.detectIntent(query);
     
-    if (!intentResult) {
-      return res.status(400).json({ 
-        error: "Unable to understand your request",
-        suggestion: "Try asking about 'check balance', 'recharge account', or 'talk to agent'"
+    console.log("Intent detection result:", intentResult);
+    
+    if (!intentResult || intentResult.service === "unknown") {
+      return res.json({ 
+        sessionId,
+        intent: "unknown",
+        confidence: 0.0,
+        response: "Sorry, I didn't understand your request. Please try asking about 'check balance', 'recharge account', or 'talk to agent'."
+      });
+    }
+
+    // Only call service if it's a valid service (acs or bap)
+    if (intentResult.service !== "acs" && intentResult.service !== "bap") {
+      return res.json({ 
+        sessionId,
+        intent: "unknown",
+        confidence: 0.0,
+        response: "Sorry, I didn't understand your request. Please try asking about 'check balance', 'recharge account', or 'talk to agent'."
       });
     }
 
     // Route to appropriate service based on detected intent
     let response;
     const serviceUrl = `http://localhost:3000/${intentResult.service}/process`;
+    
+    console.log(`Calling service: ${serviceUrl} with digit: ${intentResult.digit}`);
     
     response = await axios.post(serviceUrl, {
       sessionId,
@@ -41,6 +57,7 @@ exports.handleConversation = async (req, res) => {
 
   } catch (err) {
     console.error("Conversation middleware error:", err.message);
+    console.error("Full error:", err);
     return res.status(500).json({ 
       error: "Failed to process conversation request",
       details: err.message 
