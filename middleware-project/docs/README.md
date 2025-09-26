@@ -241,17 +241,16 @@ If the user's query cannot be mapped to a known intent, the API will return an e
 
 | Section                              | Person                  |
 |--------------------------------------|-------------------------|
-| Project Demo                         | Alankrith               |
-| Title & Team Details + Formatting    | Joise S Arakkal         |
-| Objective of Milestone 2 + Introduction | Thrupthi Chandana G     |
-| Architecture Diagram                 | Seshwar Bheemineni      |
-| Testing Middleware                   | Varshitha Kolla         |
-| System Setup (Installation Guide)    | Uma Maheshwari Naidu    |
-| System Setup (Execution Guide)       | Pati Veera Surya Umanjani |
-| API Documentation – IVR Endpoints    | Parasaram Neha Sri      |
-| API Documentation – ACS Endpoints    | Ramya Inavolu           |
-| Team Task Division + Challenges      | Byreddy Lasya Sre Reddy |
-| Learnings + Conclusion + Future Scope| Sujal Rane              |
+|  Middleware route & controller       | Alankrith               |
+| Documentation + testing screenshots  | Joise S Arakkal         |
+|  ACS/BAP service updates. | Thrupthi Chandana G     |
+| Conversational Flow design + diagrams | Seshwar Bheemineni      |
+|  Middleware route & controller  | Uma Maheshwari Naidu    |
+|  ACS/BAP service updates       | Pati Veera Surya Umanjani |
+| Intent handler (NLU logic)    | Parasaram Neha Sri      |
+| Intent handler (NLU logic)    | Ramya Inavolu           |
+| Conversational Flow design + diagrams | Byreddy Lasya Sre Reddy |
+| Documentation + testing screenshots | Sujal Rane              |
 
 ## Challenges
 
