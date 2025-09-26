@@ -209,6 +209,8 @@ The `intentService.js` file contains the logic for mapping keywords to specific 
       "response": "Your account balance is ₹500."
     }
     ```
+    ![Screenshot](https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization/blob/main/middleware-project/docs/screenshots/Screenshot%20(84).png?raw=true)
+
   * **Case 2: Agent Support Request**
     ```json
     {
@@ -217,6 +219,7 @@ The `intentService.js` file contains the logic for mapping keywords to specific 
       "response": "Connecting you to a live agent. Please hold while we transfer your call. Your estimated wait time is 2 minutes."
     }
     ```
+    ![Screenshot](https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization/blob/main/middleware-project/docs/screenshots/Screenshot%20(85).png?raw=true)
 
 #### Error Response (Unrecognized Intent)
 
@@ -230,6 +233,7 @@ If the user's query cannot be mapped to a known intent, the API will return an e
       "suggestion": "Try asking about 'check balance', 'recharge account', or 'talk to agent'"
     }
     ```
+    ![Screenshot](https://github.com/springboardmentor545-lgtm/TeamB-IVR-Modernization/blob/main/middleware-project/docs/screenshots/Screenshot%20(86).png?raw=true)
 
 -----
 
