@@ -16,7 +16,7 @@
 
 ## Introduction
 
-**Goal:** Modernize a legacy IVR system by integrating it with modern ACS (Account Control Service) and BAP (Basic Agent Proxy) services.
+**Goal:** Modernize a legacy IVR system by integrating it with modern ACS and BAP services.
 
 **Milestone 3:** This milestone enhances the Node.js middleware by adding a conversational AI layer. The system can now understand natural language queries, determine user intent, and route requests to the appropriate service, moving beyond simple digit-based DTMF inputs.
 
