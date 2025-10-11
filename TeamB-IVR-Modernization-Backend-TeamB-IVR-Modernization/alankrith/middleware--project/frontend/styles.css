@@ -1,0 +1,293 @@
+/* IVR System Frontend Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #666;
+    font-size: 14px;
+}
+
+.display {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 80px;
+    border: 2px solid #e9ecef;
+}
+
+.session-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.session-id {
+    font-size: 12px;
+    color: #6c757d;
+    background: #e9ecef;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.status {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.status.ready {
+    background: #d1edff;
+    color: #0066cc;
+}
+
+.status.processing {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.response {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+    min-height: 40px;
+}
+
+.response.placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Dialpad Styles */
+.dialpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dial-button {
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dial-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(145deg, #e0e0e0, #bdbdbd);
+}
+
+.dial-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dial-button.pressed {
+    background: linear-gradient(145deg, #4CAF50, #45a049);
+    color: white;
+    animation: press-animation 0.2s ease;
+}
+
+.dial-button .digit {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.dial-button .label {
+    font-size: 10px;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0.7;
+}
+
+@keyframes press-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Voice Command Styles */
+.voice-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.voice-button {
+    background: linear-gradient(145deg, #28a745, #20c997);
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.voice-button:hover {
+    background: linear-gradient(145deg, #20c997, #17a2b8);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.voice-button.recording {
+    background: linear-gradient(145deg, #dc3545, #c82333);
+    animation: pulse 1.5s infinite;
+}
+
+.voice-button.processing {
+    background: linear-gradient(145deg, #ffc107, #fd7e14);
+    animation: spin 2s linear infinite;
+}
+
+.voice-button.processing .voice-label {
+    animation: counter-spin 2s linear infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3); }
+    50% { box-shadow: 0 6px 25px rgba(220, 53, 69, 0.6); }
+    100% { box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3); }
+}
+
+@keyframes processing-glow {
+    0% { 
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 6px 25px rgba(255, 193, 7, 0.7);
+        transform: scale(1.05);
+    }
+    100% { 
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        transform: scale(1);
+    }
+}
+
+@keyframes counter-spin {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(-360deg); }
+}
+
+.voice-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.voice-label {
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.voice-status {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+    min-height: 20px;
+}
+
+.voice-status.recording {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.voice-status.processing {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.voice-status.success {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.voice-status.error {
+    color: #dc3545;
+    font-weight: bold;
+}

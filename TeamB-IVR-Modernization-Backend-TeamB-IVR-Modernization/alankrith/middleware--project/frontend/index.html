@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IVR System - TeamB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏦 IVR System</h1>
+            <p>Interactive Voice Response - TeamB</p>
+        </div>
+
+        <div class="display">
+            <div class="session-info">
+                <span class="session-id" id="sessionId">Session: Loading...</span>
+                <span class="status ready" id="status">Ready</span>
+            </div>
+            <div class="response placeholder" id="response">
+                Press 1 for balance. 2 for recharge. 3 for last transaction. 4 for loan info. 5 for an agent. 6 to update details. 7 to cancel. 9 to repeat this menu.
+            </div>
+        </div>
+
+        <div class="dialpad">
+            <button class="dial-button" data-digit="1">
+                <div class="digit">1</div>
+                <div class="label">Balance</div>
+            </button>
+            <button class="dial-button" data-digit="2">
+                <div class="digit">2</div>
+                <div class="label">Recharge</div>
+            </button>
+            <button class="dial-button" data-digit="3">
+                <div class="digit">3</div>
+                <div class="label">Last Trans</div>
+            </button>
+            <button class="dial-button" data-digit="4">
+                <div class="digit">4</div>
+                <div class="label">Loan Info</div>
+            </button>
+            <button class="dial-button" data-digit="5">
+                <div class="digit">5</div>
+                <div class="label">Agent</div>
+            </button>
+            <button class="dial-button" data-digit="6">
+                <div class="digit">6</div>
+                <div class="label">Update</div>
+            </button>
+            <button class="dial-button" data-digit="7">
+                <div class="digit">7</div>
+                <div class="label">Cancel</div>
+            </button>
+            <button class="dial-button" data-digit="8">
+                <div class="digit">8</div>
+                <div class="label">---</div>
+            </button>
+            <button class="dial-button" data-digit="9">
+                <div class="digit">9</div>
+                <div class="label">Menu</div>
+            </button>
+        </div>
+
+        <!-- Voice Command Section -->
+        <div class="voice-section">
+            <button class="voice-button" id="voiceButton" onclick="toggleVoiceRecording()">
+                <div class="voice-icon" id="voiceIcon">🎤</div>
+                <div class="voice-label" id="voiceLabel">Voice Command</div>
+            </button>
+            <div class="voice-status" id="voiceStatus"></div>
+        </div>
+
+        <div class="footer">
+            <p>Backend: localhost:3000 | Frontend: IVR Dialpad Interface</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
